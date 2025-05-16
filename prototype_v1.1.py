@@ -17,7 +17,6 @@ if 'gcp_service_account' in st.secrets:
         service_account_info,
         scopes=['https://www.googleapis.com/auth/earthengine']
     )
-    ee.Authenticate()
     ee.Initialize(credentials)
 else:
     st.error("This app must be run with a service account on Streamlit Cloud. Please set up the gcp_service_account secret.")
