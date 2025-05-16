@@ -19,11 +19,8 @@ if 'gcp_service_account' in st.secrets:
     )
     ee.Initialize(credentials)
 else:
-    try:
-        ee.Initialize(project='gravitasccp')
-    except Exception as e:
-        ee.Authenticate()
-        ee.Initialize(project='gravitasccp')
+    st.error("This app must be run with a service account on Streamlit Cloud. Please set up the gcp_service_account secret.")
+    st.stop()
 
 # Import remaining libraries after Earth Engine is initialized
 import geemap.foliumap as geemap
@@ -432,7 +429,7 @@ st.write("For some cities, there are spots that show up as blank or are not prop
 ### Beguinning of Chatbot Code
 
 # Set Gemini API key from Streamlit secrets
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+genai.configure(api_key=st.secrets["GEMINI"]["API_KEY"])
 
 # Function to load image for Gemini
 def load_image_for_gemini(uploaded_file):
