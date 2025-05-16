@@ -20,10 +20,10 @@ if 'gcp_service_account' in st.secrets:
     ee.Initialize(credentials)
 else:
     try:
-        ee.Initialize(project='gravitasuhisteveapi-450908')
+        ee.Initialize(project='gravitasccp')
     except Exception as e:
         ee.Authenticate()
-        ee.Initialize(project='gravitasuhisteveapi-450908')
+        ee.Initialize(project='gravitasccp')
 
 # Import remaining libraries after Earth Engine is initialized
 import geemap.foliumap as geemap
